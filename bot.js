@@ -199,34 +199,108 @@ class ThisPersonDoesNotExist extends EventEmitter {
 
 }
 
-const dnte = new ThisPersonDoesNotExist();
+function sendImage(message, filePath){
+    message.channel.send("Here's your mate:", {
+        files: [
+            filePath
+        ]
+    });
+}
 
+const dnte = new ThisPersonDoesNotExist();
+fd = "./friends/"
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', msg => {
-  if (msg.content === '.ping') {
+  if (msg.content === '[ping') {
     msg.reply('pong');
   }
-  if(msg.content === '.findmymate') {
-    dnte.getImage({
-      width: 256, // width of the image (default 128)
-      height: 256, // high of the image (default 128)
-      type: 'file',  // Type of file to generate (file or base64) (default file)
-      path: 'avatars' // Path to save (Applies to type file) (default .)
-    }).then(res  => {
-      console.log('result->', res);
-      msg.channel.send("Here's your mate", {
-        file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
-      });
-    }).catch(err  => {
-      console.log('error->', err);
-      msg.channel.send("Couldn't find you a mate.")
-    });
+  if(msg.content === '[findmymate') {
+    console.log(msg.author)
+    
+    if(msg.author.username + msg.author.discriminator == "berta9824"){
+        rndNum = Math.round((Math.random() * 4))
+        switch(rndNum){
+            case 0:
+                sendImage(msg,fd + "berta's_mate.jpg");
+                break;
+            case 1:
+                sendImage(msg,fd + "berta's_mate2.jpg");
+                break;
+            case 2:
+                sendImage(msg,fd + "berta's_mate3.jpg");
+                break;
+            case 3:
+                sendImage(msg,fd + "berta's_mate4.png");
+                break;
+        }
+    }
+    else if(msg.author.username + msg.author.discriminator == "thekeely4really9121"){
+        rndNum = Math.round((Math.random() * 5))
+        switch(rndNum){
+            case 0:
+                sendImage(msg,fd + "Keely's_mate.png");
+                break;
+            case 1:
+                sendImage(msg,fd + "Keely's_mate2.png");
+                break;
+            case 2:
+                sendImage(msg,fd + "Keely's_mate3.png");
+                break;
+            case 3:
+                sendImage(msg,fd + "Keely's_mate4.jpg");
+                break;
+            case 4:
+                sendImage(msg,fd+"timlookingbadass.jpg");
+        }
+    }
+    else if(msg.author.username + msg.author.discriminator == "tycm6833"){
+        rndNum = Math.round((Math.random() * 5))
+        switch(rndNum){
+            case 0:
+                sendImage(msg,fd + "Tim's_mate.png");
+                break;
+            case 1:
+                sendImage(msg,fd + "Tim's_mate2.png");
+                break;
+            case 2:
+                sendImage(msg,fd + "Tim's_mate3.png");
+                break;
+            case 3:
+                sendImage(msg,fd + "tim's_mate3.jpeg");
+                break;
+            case 4:
+                sendImage(msg,fd + "Tim's_mate4.jpg");
+                break;
+            case 5:
+                sendImage(msg,fd + "tim's_mate5.jpg");
+                break;
+        }
+    }
+    else if(msg.author.username + msg.author.discriminator == "seahenge8228"){
+        sendImage(msg,fd + "elise's_mate.jpg");
+    }
+    else{
+        dnte.getImage({
+          width: 256, // width of the image (default 128)
+          height: 256, // high of the image (default 128)
+          type: 'file',  // Type of file to generate (file or base64) (default file)
+          path: 'avatars' // Path to save (Applies to type file) (default .)
+        }).then(res  => {
+          console.log('result->', res);
+          msg.channel.send("Here's your mate", {
+            file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
+          });
+        }).catch(err  => {
+          console.log('error->', err);
+          msg.channel.send("Couldn't find you a mate.")
+        });
+    }
   }
-  if(msg.content === '.help'){
-    msg.channel.send("Commands: .findmymate")
+  if(msg.content === '[help'){
+    msg.channel.send("Commands: [findmymate")
   }
 });
 
