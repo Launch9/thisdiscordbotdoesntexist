@@ -237,44 +237,16 @@ client.on('message', msg => {
                 break;
         }
     }
-    else if(msg.author.username + msg.author.discriminator == "thekeely4really9121"){
-        rndNum = Math.round((Math.random() * 5))
-        switch(rndNum){
-            case 0:
-                sendImage(msg,fd + "Keely's_mate.png");
-                break;
-            case 1:
-                sendImage(msg,fd + "Keely's_mate2.png");
-                break;
-            case 2:
-                sendImage(msg,fd + "Keely's_mate3.png");
-                break;
-            case 3:
-                sendImage(msg,fd + "Keely's_mate4.jpg");
-                break;
-            case 4:
-                sendImage(msg,fd+"timlookingbadass.jpg");
-        }
-    }
     else if(msg.author.username + msg.author.discriminator == "tycm6833"){
-        rndNum = Math.round((Math.random() * 5))
+        rndNum = Math.round((Math.random() * 3))
         switch(rndNum){
             case 0:
-                sendImage(msg,fd + "Tim's_mate.png");
-                break;
-            case 1:
-                sendImage(msg,fd + "Tim's_mate2.png");
-                break;
-            case 2:
-                sendImage(msg,fd + "Tim's_mate3.png");
-                break;
-            case 3:
                 sendImage(msg,fd + "tim's_mate3.jpeg");
                 break;
-            case 4:
+            case 1:
                 sendImage(msg,fd + "Tim's_mate4.jpg");
                 break;
-            case 5:
+            case 2:
                 sendImage(msg,fd + "tim's_mate5.jpg");
                 break;
         }
