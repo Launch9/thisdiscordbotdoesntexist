@@ -210,6 +210,7 @@ function sendImage(message, filePath, text){
 const dnte = new ThisPersonDoesNotExist();
 const mateText = "Here's your mate:"
 const waifuText = "Here's your waifu:"
+const fursonaText = "Here's your fursona you degenerate:"
 fd = "./friends/"
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -277,6 +278,10 @@ client.on('message', msg => {
     rndNum = Math.round((Math.random() * 100000))
     sendImage(msg,"https://www.thiswaifudoesnotexist.net/example-" + rndNum.toString() + ".jpg",waifuText);
 
+  }
+  if(msg.content === "[findmyfursona"){
+    rndNum = Math.round((Math.random() * 100000))
+    sendImage(msg,"https://thisfursonadoesnotexist.com/v2/jpgs/seed" + rndNum + ".jpg", fursonaText)
   }
   if(msg.content === '[help'){
     msg.channel.send("Commands: [findmymate, [findmywaifu")
