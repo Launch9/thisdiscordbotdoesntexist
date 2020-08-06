@@ -199,8 +199,8 @@ class ThisPersonDoesNotExist extends EventEmitter {
 
 }
 
-function sendImage(message, filePath){
-    message.channel.send("Here's your mate:", {
+function sendImage(message, filePath, text){
+    message.channel.send(text, {
         files: [
             filePath
         ]
@@ -208,6 +208,8 @@ function sendImage(message, filePath){
 }
 
 const dnte = new ThisPersonDoesNotExist();
+const mateText = "Here's your mate:"
+const waifuText = "Here's your waifu:"
 fd = "./friends/"
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -224,16 +226,16 @@ client.on('message', msg => {
         rndNum = Math.round((Math.random() * 4))
         switch(rndNum){
             case 0:
-                sendImage(msg,fd + "berta's_mate.jpg");
+                sendImage(msg,fd + "berta's_mate.jpg",mateText);
                 break;
             case 1:
-                sendImage(msg,fd + "berta's_mate2.jpg");
+                sendImage(msg,fd + "berta's_mate2.jpg",mateText);
                 break;
             case 2:
-                sendImage(msg,fd + "berta's_mate3.jpg");
+                sendImage(msg,fd + "berta's_mate3.jpg",mateText);
                 break;
             case 3:
-                sendImage(msg,fd + "berta's_mate4.png");
+                sendImage(msg,fd + "berta's_mate4.png",mateText);
                 break;
         }
     }
@@ -241,18 +243,18 @@ client.on('message', msg => {
         rndNum = Math.round((Math.random() * 3))
         switch(rndNum){
             case 0:
-                sendImage(msg,fd + "tim's_mate3.jpeg");
+                sendImage(msg,fd + "tim's_mate3.jpeg",mateText);
                 break;
             case 1:
-                sendImage(msg,fd + "Tim's_mate4.jpg");
+                sendImage(msg,fd + "Tim's_mate4.jpg",mateText);
                 break;
             case 2:
-                sendImage(msg,fd + "tim's_mate5.jpg");
+                sendImage(msg,fd + "tim's_mate5.jpg",mateText);
                 break;
         }
     }
     else if(msg.author.username + msg.author.discriminator == "seahenge8228"){
-        sendImage(msg,fd + "elise's_mate.jpg");
+        sendImage(msg,fd + "elise's_mate.jpg",mateText);
     }
     else{
         dnte.getImage({
@@ -271,8 +273,13 @@ client.on('message', msg => {
         });
     }
   }
+  if(msg.content === '[findmywaifu') {
+    rndNum = Math.round((Math.random() * 100000))
+    sendImage(msg,"https://www.thiswaifudoesnotexist.net/example-" + rndNum.toString() + ".jpg",waifuText);
+
+  }
   if(msg.content === '[help'){
-    msg.channel.send("Commands: [findmymate")
+    msg.channel.send("Commands: [findmymate, [findmywaifu")
   }
 });
 
