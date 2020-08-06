@@ -66,10 +66,10 @@ class ThisPersonDoesNotExist extends EventEmitter {
      * @returns {Object}
      * @memberof ThisPersonDoesNotExist
      */
-    async getRemoteImage() {
+    async getRemoteImage(websitePath) {
         return new Promise((resolve, reject) => {
             request.get({
-                url: 'https://thispersondoesnotexist.com/image',
+                url: websitePath,
                 encoding: null
             }, (error, response, body) => {
                 if (error) return reject(error);
@@ -90,7 +90,6 @@ class ThisPersonDoesNotExist extends EventEmitter {
             });
         });
     }
-
     /**
      * Obtain a image
      *
@@ -107,7 +106,8 @@ class ThisPersonDoesNotExist extends EventEmitter {
         width,
         height,
         type,
-        path
+        path,
+        websitePath
     }) {
 
         width = width || 128;
@@ -120,7 +120,7 @@ class ThisPersonDoesNotExist extends EventEmitter {
             let {
                 img,
                 mimType
-            } = await this.getRemoteImage();
+            } = await this.getRemoteImage(websitePath);
 
             if (img && mimType) {
 
@@ -262,7 +262,8 @@ client.on('message', msg => {
           width: 256, // width of the image (default 128)
           height: 256, // high of the image (default 128)
           type: 'file',  // Type of file to generate (file or base64) (default file)
-          path: 'avatars' // Path to save (Applies to type file) (default .)
+          path: 'avatars', // Path to save (Applies to type file) (default .)
+          websitePath: 'https://thispersondoesnotexist.com/image'
         }).then(res  => {
           console.log('result->', res);
           msg.channel.send("Here's your mate", {
@@ -282,6 +283,24 @@ client.on('message', msg => {
   if(msg.content === "[findmyfursona"){
     rndNum = Math.round((Math.random() * 90000)) + 10000
     sendImage(msg,"https://thisfursonadoesnotexist.com/v2/jpgs/seed" + rndNum + ".jpg", fursonaText)
+  }
+  if(msg.content == "[findmycat"){
+    dnte.getImage({
+        width: 256, // width of the image (default 128)
+        height: 256, // high of the image (default 128)
+        type: 'file',  // Type of file to generate (file or base64) (default file)
+        path: 'avatars', // Path to save (Applies to type file) (default .)
+        websitePath: 'https://thiscatdoesnotexist.com'
+      }).then(res  => {
+        console.log('result->', res);
+        msg.channel.send("Here's your cat", {
+          file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
+        });
+      }).catch(err  => {
+        console.log('error->', err);
+        msg.channel.send("Couldn't find you a cat :(")
+      });
+    //sendImage(msg,"https://thiscatdoesnotexist.com/", "Here's your cat:")
   }
   if(msg.content === '[help'){
     msg.channel.send("Commands: [findmymate, [findmywaifu")
