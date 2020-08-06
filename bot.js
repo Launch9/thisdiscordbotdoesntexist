@@ -284,6 +284,17 @@ client.on('message', msg => {
     rndNum = Math.round((Math.random() * 90000)) + 10000
     sendImage(msg,"https://thisfursonadoesnotexist.com/v2/jpgs/seed" + rndNum + ".jpg", fursonaText)
   }
+  if(msg.content == "[findmyrental"){
+    sendImage(msg, "https://thisrentaldoesnotexist.com/img-new/hero.jpg", "Here's something you can't afford:")
+  }
+  if(msg.content == "[findmyvase"){
+    rndNum = Math.round((Math.random() * 19999)) + 1
+    sendImage(msg, "http://thisvesseldoesnotexist.s3-website-us-west-2.amazonaws.com/public/v2/fakes/00" + rndNum.toString() + ".jpg", "Here's your vase:")
+  }
+  if(msg.content == "[findmypony"){
+      rndNum = Math.round((Math.random() * 99999))
+      sendImage(msg, "https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed" + rndNum.toString() + ".jpg", "Here's your pony:")
+  }
   if(msg.content == "[findmycat"){
     dnte.getImage({
         width: 256, // width of the image (default 128)
@@ -303,7 +314,7 @@ client.on('message', msg => {
     //sendImage(msg,"https://thiscatdoesnotexist.com/", "Here's your cat:")
   }
   if(msg.content === '[help'){
-    msg.channel.send("Commands: [findmymate, [findmywaifu")
+    msg.channel.send("Commands: [findmymate, [findmywaifu, [findmyfursona, [findmyvase, [findmypony, [findmyrental, [findmycat")
   }
 });
 
