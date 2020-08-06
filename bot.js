@@ -280,7 +280,7 @@ client.on('message', msg => {
 
   }
   if(msg.content === "[findmyfursona"){
-    rndNum = Math.round((Math.random() * 100000))
+    rndNum = Math.round((Math.random() * 90000)) + 10000
     sendImage(msg,"https://thisfursonadoesnotexist.com/v2/jpgs/seed" + rndNum + ".jpg", fursonaText)
   }
   if(msg.content === '[help'){
