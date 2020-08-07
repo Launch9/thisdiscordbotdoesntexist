@@ -208,8 +208,8 @@ function sendImage(message, filePath, text){
 }
 
 const dnte = new ThisPersonDoesNotExist();
-const mateText = "Here's your mate:"
-const waifuText = "Here's your waifu:"
+const mateText = "Here's your person:"
+const waifuText = "Here's your anime:"
 const fursonaText = "Here's your fursona you degenerate:"
 fd = "./friends/"
 client.on('ready', () => {
@@ -220,7 +220,7 @@ client.on('message', msg => {
   if (msg.content === '[ping') {
     msg.reply('pong');
   }
-  if(msg.content === '[findmymate') {
+  if(msg.content === '[findmyperson') {
     console.log(msg.author)
     
     if(msg.author.username + msg.author.discriminator == "berta9824"){
@@ -275,7 +275,7 @@ client.on('message', msg => {
         });
     }
   }
-  if(msg.content === '[findmywaifu') {
+  if(msg.content === '[findmyanime') {
     rndNum = Math.round((Math.random() * 100000))
     sendImage(msg,"https://www.thiswaifudoesnotexist.net/example-" + rndNum.toString() + ".jpg",waifuText);
 
@@ -314,7 +314,7 @@ client.on('message', msg => {
     //sendImage(msg,"https://thiscatdoesnotexist.com/", "Here's your cat:")
   }
   if(msg.content === '[help'){
-    msg.channel.send("Commands: [findmymate, [findmywaifu, [findmyfursona, [findmyvase, [findmypony, [findmyrental, [findmycat")
+    msg.channel.send("Commands: [findmyperson, [findmyanime, [findmyfursona, [findmyvase, [findmypony, [findmyrental, [findmycat")
   }
 });
 
