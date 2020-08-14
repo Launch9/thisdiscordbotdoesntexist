@@ -51,7 +51,7 @@ class ThisPersonDoesNotExist extends EventEmitter {
      * @memberof ThisPersonDoesNotExist
      */
     async getImagePath(body, path, width, height) {
-        let name = `${this.getId(10)}.jpeg`;
+        let name = `image.jpeg`;
         let ImagePath = await sharp(body)
             .resize(width, height)
             .toFile(`${path}/${name}`);
@@ -288,12 +288,46 @@ client.on('message', msg => {
     sendImage(msg, "https://thisrentaldoesnotexist.com/img-new/hero.jpg", "Here's something you can't afford:")
   }
   if(msg.content == "[findmyvase"){
-    rndNum = Math.round((Math.random() * 19999)) + 1
+    rndNum = Math.round((Math.random() * 10000)) + 1
     sendImage(msg, "http://thisvesseldoesnotexist.s3-website-us-west-2.amazonaws.com/public/v2/fakes/00" + rndNum.toString() + ".jpg", "Here's your vase:")
   }
   if(msg.content == "[findmypony"){
       rndNum = Math.round((Math.random() * 99999))
       sendImage(msg, "https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed" + rndNum.toString() + ".jpg", "Here's your pony:")
+  }
+  if(msg.content == "[findmyart"){
+    dnte.getImage({
+        width: 128, // width of the image (default 128)
+        height: 128, // high of the image (default 128)
+        type: 'file',  // Type of file to generate (file or base64) (default file)
+        path: 'avatars', // Path to save (Applies to type file) (default .)
+        websitePath: 'https://thisartworkdoesnotexist.com'
+      }).then(res  => {
+        console.log('result->', res);
+        msg.channel.send("Here's your art", {
+          file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
+        });
+      }).catch(err  => {
+        console.log('error->', err);
+        msg.channel.send("Couldn't find you a art :(")
+      });
+  }
+  if(msg.content == "[findmyhorse"){
+    dnte.getImage({
+        width: 256, // width of the image (default 128)
+        height: 256, // high of the image (default 128)
+        type: 'file',  // Type of file to generate (file or base64) (default file)
+        path: 'avatars', // Path to save (Applies to type file) (default .)
+        websitePath: 'https://thishorsedoesnotexist.com'
+      }).then(res  => {
+        console.log('result->', res);
+        msg.channel.send("Here's your horse", {
+          file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
+        });
+      }).catch(err  => {
+        console.log('error->', err);
+        msg.channel.send("Couldn't find you a horse :(")
+      });
   }
   if(msg.content == "[findmycat"){
     dnte.getImage({
@@ -314,7 +348,7 @@ client.on('message', msg => {
     //sendImage(msg,"https://thiscatdoesnotexist.com/", "Here's your cat:")
   }
   if(msg.content === '[help'){
-    msg.channel.send("Commands: [findmyperson, [findmyanime, [findmyfursona, [findmyvase, [findmypony, [findmyrental, [findmycat")
+    msg.channel.send("Commands: [findmyart, [findmyhorse, [findmyperson, [findmyanime, [findmyfursona, [findmyvase, [findmypony, [findmyrental, [findmycat")
   }
 });
 
