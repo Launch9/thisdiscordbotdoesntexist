@@ -222,58 +222,22 @@ client.on('message', msg => {
   }
   if(msg.content === '[findmyperson') {
     console.log(msg.author)
+    dnte.getImage({
+      width: 256, // width of the image (default 128)
+      height: 256, // high of the image (default 128)
+      type: 'file',  // Type of file to generate (file or base64) (default file)
+      path: 'avatars', // Path to save (Applies to type file) (default .)
+      websitePath: 'https://thispersondoesnotexist.com/image'
+    }).then(res  => {
+      console.log('result->', res);
+      msg.channel.send("Here's your mate", {
+        file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
+      });
+    }).catch(err  => {
+      console.log('error->', err);
+      msg.channel.send("Couldn't find you a mate.")
+    });
     
-    if(msg.author.username + msg.author.discriminator == "berta9824"){
-        rndNum = Math.round((Math.random() * 4))
-        switch(rndNum){
-            case 0:
-                sendImage(msg,fd + "berta's_mate.jpg",mateText);
-                break;
-            case 1:
-                sendImage(msg,fd + "berta's_mate2.jpg",mateText);
-                break;
-            case 2:
-                sendImage(msg,fd + "berta's_mate3.jpg",mateText);
-                break;
-            case 3:
-                sendImage(msg,fd + "berta's_mate4.png",mateText);
-                break;
-        }
-    }
-    else if(msg.author.username + msg.author.discriminator == "tycm6833"){
-        rndNum = Math.round((Math.random() * 3))
-        switch(rndNum){
-            case 0:
-                sendImage(msg,fd + "tim's_mate3.jpeg",mateText);
-                break;
-            case 1:
-                sendImage(msg,fd + "Tim's_mate4.jpg",mateText);
-                break;
-            case 2:
-                sendImage(msg,fd + "tim's_mate5.jpg",mateText);
-                break;
-        }
-    }
-    else if(msg.author.username + msg.author.discriminator == "seahenge8228"){
-        sendImage(msg,fd + "elise's_mate.jpg",mateText);
-    }
-    else{
-        dnte.getImage({
-          width: 256, // width of the image (default 128)
-          height: 256, // high of the image (default 128)
-          type: 'file',  // Type of file to generate (file or base64) (default file)
-          path: 'avatars', // Path to save (Applies to type file) (default .)
-          websitePath: 'https://thispersondoesnotexist.com/image'
-        }).then(res  => {
-          console.log('result->', res);
-          msg.channel.send("Here's your mate", {
-            file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
-          });
-        }).catch(err  => {
-          console.log('error->', err);
-          msg.channel.send("Couldn't find you a mate.")
-        });
-    }
   }
   if(msg.content === '[findmyanime') {
     rndNum = Math.round((Math.random() * 100000))
