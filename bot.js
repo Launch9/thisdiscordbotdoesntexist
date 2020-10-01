@@ -230,12 +230,12 @@ client.on('message', msg => {
       websitePath: 'https://thispersondoesnotexist.com/image'
     }).then(res  => {
       console.log('result->', res);
-      msg.channel.send("Here's your mate", {
+      msg.channel.send("Here's your person", {
         file: "./avatars/" + res.data.name.toString() // Or replace with FileOptions object
       });
     }).catch(err  => {
       console.log('error->', err);
-      msg.channel.send("Couldn't find you a mate.")
+      msg.channel.send("Couldn't find you a person.")
     });
     
   }
