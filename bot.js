@@ -253,7 +253,13 @@ client.on('message', msg => {
   }
   if(msg.content == "[findmyvase"){
     rndNum = Math.round((Math.random() * 10000)) + 1
-    sendImage(msg, "http://thisvesseldoesnotexist.s3-website-us-west-2.amazonaws.com/public/v2/fakes/00" + rndNum.toString() + ".jpg", "Here's your vase:")
+    stringLength = rndNum.toString().length
+    numZeros = 7 - stringLength
+    numberString = rndNum.toString()
+    for(i = 0; i < numZeros; i++){
+      numberString = "0" + numberString
+    }
+    sendImage(msg, "http://thisvesseldoesnotexist.s3-website-us-west-2.amazonaws.com/public/v2/fakes/" + numberString + ".jpg", "Here's your vase:")
   }
   if(msg.content == "[findmypony"){
       rndNum = Math.round((Math.random() * 99999))
